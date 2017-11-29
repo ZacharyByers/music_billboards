@@ -1,0 +1,16 @@
+<h1>Billboards</h1>
+<% if @billboards.any? %>
+  <% @billboards.each do |billboard| %>
+    <h4><%= link_to billboard.name, billboard_path(billboard) %></h4>
+    <i>
+      <%= link_to 'Edit', edit_billboard_path(billboard), class: 'btn btn-primary' %>
+      <%= link_to 'Delete', billboard_path(billboard),
+                            method: :delete,
+                            data: { confirm: 'Really Delete?' },
+                            class: 'btn btn-danger' %>
+      
+    </i>
+  <% end %>
+<% else %>
+  <h4>No boards yet</h4>
+<% end %>
