@@ -1,13 +1,13 @@
 <h1>Billboards</h1>
 <% if @billboards.any? %>
   <% @billboards.each do |billboard| %>
-    <h4><%= link_to billboard.name, billboard_path(billboard) %></h4>
+    <h2><%= link_to billboard.name, billboard_path(billboard) %></h2>
     <i>
-      <%= link_to 'Edit', edit_billboard_path(billboard), class: 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_billboard_path(billboard), class: 'ui button tiny' %>
       <%= link_to 'Delete', billboard_path(billboard),
                             method: :delete,
                             data: { confirm: 'Really Delete?' },
-                            class: 'btn btn-danger' %>
+                            class: 'ui button negative tiny' %>
     </i>
   <% end %>
 <% else %>

@@ -1,14 +1,13 @@
 <h1>Artists</h1>
 <% if @artists.any? %>
-  <% @artists.each do |artist| %>  
-    <hr/>
-    <h4><%= link_to artist.name, artist_path(artist) %></h4>
+  <% @artists.each do |artist| %>
+    <h2><%= link_to artist.name, artist_path(artist) %></h2>
     <i>
-      <%= link_to 'Edit', edit_artist_path(artist), class: 'btn btn-primary'  %>
+      <%= link_to 'Edit', edit_artist_path(artist), class: 'ui button tiny'  %>
       <%= link_to 'Delete', artist_path(artist),
                             method: :delete,
                             data: { confirm: 'Really Delete?' },
-                            class: 'btn btn-danger' %>
+                            class: 'ui button negative tiny' %>
     </i>
   <% end %>
 <% else %>

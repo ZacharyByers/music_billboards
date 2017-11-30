@@ -1,4 +1,11 @@
 <h1><%= @billboard.name %></h1>
+<nav>
+  <%= link_to 'Edit', edit_billboard_path(@billboard), class: 'ui button' %>
+  <%= link_to 'Delete', billboard_path(@billboard),
+                        method: :delete,
+                        data: { confirm: 'Really Delete?' },
+                        class: 'ui button negative' %>
+</nav>
 <% if @billboard.songs.any? %>
   <% @billboard.songs.each do |song| %>
     <%

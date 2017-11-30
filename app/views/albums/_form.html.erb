@@ -1,7 +1,13 @@
-<h1><%= @album.id ? 'Edit Album' : 'New Album' %></h1>
-<%= form_for [@artist, @album] do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title, required: true %>
-  <br/>
-  <%= f.submit %>
-<% end %>
+<div class='ui container'>
+  <h1><%= @album.id ? 'Edit Album' : 'New Album' %></h1>
+  <nav>
+    <%= link_to 'Back', @album.id ? artist_album_path(@album.artist_id, @album) : artist_path(@album.artist_id), class: 'ui button' %>
+  </nav>
+  <%= form_for [@artist, @album], html: { class: 'ui form' } do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title, required: true %>
+    <br/>
+    <br/>
+    <%= f.submit class: 'ui positive button' %>
+  <% end %>
+</div>

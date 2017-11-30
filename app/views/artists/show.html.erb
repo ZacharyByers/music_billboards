@@ -1,17 +1,16 @@
 <h1><%= @artist.name %></h1>
 <nav>
-  <%= link_to 'New Album', new_artist_album_path(@artist) %>
+  <%= link_to 'New Album', new_artist_album_path(@artist), class: 'ui button primary' %>
 </nav>
 <% if @artist.albums.any? %>
   <% @artist.albums.each do |album| %>
-    <hr/>
-    <h4><%= link_to album.title, artist_album_path(@artist, album) %></h4>
+    <h3><%= link_to album.title, artist_album_path(@artist, album) %></h3>
     <i>
-      <%= link_to 'Edit', edit_artist_album_path(@artist, album), class: 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_artist_album_path(@artist, album), class: 'ui button tiny' %>
       <%= link_to 'Delete', artist_album_path(@artist, album),
                             method: :delete,
                             data: { confirm: 'Really Delete?' },
-                            class: 'btn btn-danger' %>
+                            class: 'ui button negative tiny' %>
     </i>
   <% end %>
 <% end %>

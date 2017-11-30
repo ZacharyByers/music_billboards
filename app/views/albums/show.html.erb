@@ -1,19 +1,23 @@
 <h1><%= @album.title %></h1>
 <nav>
-  <%= link_to 'New Song', new_album_song_path(@album) %>
+  <%= link_to 'New Song', new_album_song_path(@album), class: 'ui primary button' %>
+  <%= link_to 'Edit', edit_artist_album_path(@album.artist_id, @album), class: 'ui button' %>
+  <%= link_to 'Delete', artist_album_path(@album.artist_id, @album),
+                        method: :delete,
+                        data: { confirm: 'Really Delete?' },
+                        class: 'ui negative button' %>
 </nav>
-<h3> By: <%= link_to @artist.name, artist_path(@artist) %></h3>
+<h3> Album By: <%= link_to @artist.name, artist_path(@artist) %></h3>
 
 <% if @album.songs.any? %>
   <% @album.songs.each do |song| %>
-    <hr/>
     <h4> <%= link_to song.title, album_song_path(@album, song) %> </h4>
     <i>
-      <%= link_to 'Edit', edit_album_song_path(@album, song), class: 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_album_song_path(@album, song), class: 'ui button tiny' %>
       <%= link_to 'Delete', album_song_path(@album, song),
                             method: :delete,
                             data: { confirm: 'Really Delete?'},
-                            class: 'btn btn-danger' %>
+                            class: 'ui button negative tiny' %>
     </i>
   <% end %>
 <% else %>

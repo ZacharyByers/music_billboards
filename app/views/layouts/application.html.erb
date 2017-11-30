@@ -4,18 +4,36 @@
     <title>MusicBillboards</title>
     <%= csrf_meta_tags %>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-      <%= link_to 'New Billboard', new_billboard_path, class: 'nav-link' %>
-      <%= link_to 'New Artist', new_artist_path, class: 'nav-link' %>
-      <%= link_to 'Billboards', root_path, class: 'nav-link' %>
-      <%= link_to 'Artists', artists_path, class: 'nav-link' %>
-    </nav>
+    <%
+      bill_link = 'item'
+      art_link = 'item'
+      new_bill_link = 'item'
+      new_art_link = 'item'
+      if params[:controller] == 'billboards'
+        if params[:action] == 'index'
+          bill_link = 'active item'
+        elsif params[:action] == 'new'
+          new_bill_link = 'active item'
+        end
+      elsif params[:controller] = 'artists'
+        if params[:action] == 'index'
+          art_link = 'active item'
+        elsif params[:action] == 'new'
+          new_art_link = 'active item'
+        end
+      end
+    %>
+    <div class="ui four item menu">
+      <%= link_to 'New Billboard', new_billboard_path, class: new_bill_link %>
+      <%= link_to 'New Artist', new_artist_path, class: new_art_link %>
+      <%= link_to 'Billboards', billboards_path, class: bill_link %>
+      <%= link_to 'Artists', artists_path, class: art_link %>
+    </div>
     <%= yield %>
   </body>
 </html>

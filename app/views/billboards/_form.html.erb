@@ -1,7 +1,12 @@
-<h1><%= @billboard.id ? 'Edit Billboard' : 'New Billboard' %></h1>
-<%= form_for @billboard do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, required: true, autofocus: true %>
-  <br/>
-  <%= f.submit %>
-<% end %>
+<div class='ui container'>
+  <h1><%= @billboard.id ? 'Edit Billboard' : 'New Billboard' %></h1>
+  <nav>
+    <%= link_to 'Back', @billboard.id ? billboard_path(@billboard) : billboards_path, class: 'ui button' %>
+  </nav>
+  <%= form_for @billboard, html: { class: 'ui form' } do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true, autofocus: true %>
+    <br/>
+    <%= f.submit class: 'ui positive button' %>
+  <% end %>
+</div>
