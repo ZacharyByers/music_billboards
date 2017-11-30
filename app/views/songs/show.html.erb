@@ -1,0 +1,12 @@
+<h1><%= @song.title %></h1>
+<% artist = Artist.find(@album.artist_id) %>
+<blockquote>
+  By: <%= link_to artist.name, artist_path(artist) %>
+  <br/>
+  On the album:  <%= link_to @album.title, artist_album_path(@album.artist_id, @album) %>
+  <br/>
+  <% if @song.billboard_id %>
+    <% billboard = Billboard.find(@song.billboard_id) %>
+    On the <%= link_to billboard.name, billboard_path(billboard) %> billboard
+  <% end %>
+</blockquote>

@@ -1,1 +1,18 @@
 <h1><%= @billboard.name %></h1>
+<% if @billboard.songs.any? %>
+  <% @billboard.songs.each do |song| %>
+    <%
+      album = Album.find(song.album_id)
+      artist = Artist.find(album.artist_id)
+    %>
+    <h4> <%= link_to song.title, album_song_path(@billboard, song) %></h4>
+    <blockquote>
+      Artist: <%= link_to artist.name, artist_path(artist) %>
+      <br/>
+      Album: <%= link_to album.title, artist_album_path(artist, album) %>
+    </blockquote>
+  <% end %>
+
+<% else %>
+  <h4>No Songs Yet.</h4>
+<% end %>

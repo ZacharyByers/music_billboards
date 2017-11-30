@@ -1,0 +1,7 @@
+<h1><%= @album.id ? 'Edit Album' : 'New Album' %></h1>
+<%= form_for [@artist, @album] do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, required: true %>
+  <br/>
+  <%= f.submit %>
+<% end %>

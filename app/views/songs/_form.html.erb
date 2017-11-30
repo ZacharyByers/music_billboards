@@ -1,0 +1,21 @@
+<h1> <%= @song.id ? 'Edit Song' : 'New Song' %> </h1>
+<%
+  billboards = []
+  Billboard.all.each do |billboard|
+    billboards << billboard.name
+  end
+%>
+
+<nav>
+  <%= link_to 'Back', artist_album_path(@album.artist_id, @album) %>
+</nav>
+<%= form_for [@album, @song] do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, required: true %>
+  <br/>
+  <%= f.label 'Billboard' %>
+  <%= f.collection_select :billboard_id, Billboard.all, :id, :name,
+                          include_blank: true %>
+  <br/>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,21 @@
+<h1><%= @album.title %></h1>
+<nav>
+  <%= link_to 'New Song', new_album_song_path(@album) %>
+</nav>
+<h3> By: <%= link_to @artist.name, artist_path(@artist) %></h3>
+
+<% if @album.songs.any? %>
+  <% @album.songs.each do |song| %>
+    <hr/>
+    <h4> <%= link_to song.title, album_song_path(@album, song) %> </h4>
+    <i>
+      <%= link_to 'Edit', edit_album_song_path(@album, song), class: 'btn btn-primary' %>
+      <%= link_to 'Delete', album_song_path(@album, song),
+                            method: :delete,
+                            data: { confirm: 'Really Delete?'},
+                            class: 'btn btn-danger' %>
+    </i>
+  <% end %>
+<% else %>
+  <h4>No Songs Yet</h4>
+<% end %>
